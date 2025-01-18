@@ -15,7 +15,7 @@
         // Auto-remove alert after 5 seconds
     setTimeout(() => {
         element.remove();
-    }, 2000);
+    }, 5000);
     }
 
     function setActive()
