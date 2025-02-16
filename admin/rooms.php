@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="table-responsive-lg" style="height: 450px; overflow-y: scroll;">
-                            <table class="table table-hover border">
+                            <table class="table table-hover border text-center">
                                 <thead>
                                     <tr class="table-dark text-light">
                                     <th scope="col">#</th>
@@ -197,7 +197,93 @@
         </div>
     </div>
 
-
+    <!--Edit Room Modal-->
+    
+    <div class="modal fade" id="edit-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <form id="edit_room_form" autocomplete="off">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Room</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Name</label>
+                                <input type="text" name="name" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Area</label>
+                                <input type="number" min="1" name="area" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Price</label>
+                                <input type="number" min="1" name="price" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Quantity</label>
+                                <input type="number" min="1" name="quantity" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Adult (Max.)</label>
+                                <input type="number" min="1" name="adult" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Children (Max.)</label>
+                                <input type="number" min="1" name="children" class="form-control shadow-none" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Features</label>
+                                <div class="row">
+                                    <?php
+                                        $res = selectAll('features');
+                                        while($opt = mysqli_fetch_assoc($res)){
+                                            echo"
+                                                <div class='col-md-3 mb-1'>
+                                                    <label>
+                                                        <input type='checkbox' name='features' value=$opt[id] class='form-check-input shadow-none'>
+                                                        $opt[name]
+                                                    </label>
+                                                </div>
+                                                ";
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Facilities</label>
+                                <div class="row">
+                                    <?php
+                                        $res = selectAll('facilities');
+                                        while($opt = mysqli_fetch_assoc($res)){
+                                            echo"
+                                                <div class='col-md-3 mb-1'>
+                                                    <label>
+                                                        <input type='checkbox' name='facilities' value=$opt[id] class='form-check-input shadow-none'>
+                                                        $opt[name]
+                                                    </label>
+                                                </div>
+                                                ";
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="form-label fw-bold">Description</label>
+                                <textarea name="description" rows="4" class="form-control shadow-none" required></textarea>
+                            </div>
+                            <input type="hidden" name="room_id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn custom-bg text-white shadow-none">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <?php require ('inc/scripts.php'); ?>
     <script>
         let add_room_form = document.getElementById('add_room_form');
@@ -211,7 +297,7 @@
         {
             let data = new FormData();
             data.append('name', add_room_form.elements['name'].value);
-            data.append('area', add_room_form.elements['price'].value);
+            data.append('area', add_room_form.elements['area'].value);
             data.append('price', add_room_form.elements['price'].value);
             data.append('quantity', add_room_form.elements['quantity'].value);
             data.append('adult', add_room_form.elements['adult'].value);
@@ -248,18 +334,69 @@
 
                     if (this.responseText == 1) {
                         alert('success', 'New Room Added!');
-                        console.log('Response result:', responseText);
+                        console.log('Response result:', this.responseText);
                         add_room_form.reset();
                         // add_room_form.elements['name'].value = '';
-                        // get_features();
+                        get_all_rooms();
                     } 
                     else {
                         alert('error', 'Error in Backend: ');
-                        console.log('Response result:', responseText);
+                        console.log('Response result:', this.responseText);
                     }
                 }
 
             xhr.send(data);
+        }
+
+        function get_all_rooms()
+        {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/rooms.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                    document.getElementById('room-data').innerHTML = this.responseText;
+                }
+
+            xhr.send('get_all_rooms');
+        }
+
+        let edit_room_form = document.getElementById('edit_room_form');
+
+        function edit_details(id)
+        {
+             let xhr = new XMLHttpRequest();
+             xhr.open("POST", "ajax/rooms.php", true);
+             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+             xhr.onload = function () {
+                 console.log(this.responseText);
+                 }
+
+             xhr.send('get_room='+id);
+        }
+
+        function toggle_status(id,val)
+        {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "ajax/rooms.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function(){
+                    if(this.responseText==1){
+                        alert('success','Status toggled!');
+                        get_all_rooms();
+                    }
+                    else{
+                        alert('warning', 'Server Down!');
+                    }
+                }
+
+            xhr.send('toggle_status='+id+'&value='+val);
+        }
+
+        window.onload = function (){
+            get_all_rooms();
         }
     </script>
 </body>
