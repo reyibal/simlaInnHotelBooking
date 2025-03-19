@@ -20,9 +20,13 @@
         }
 
         // Auto-remove alert after 5 seconds
-    setTimeout(() => {
-        element.remove();
-    }, 5000);
+      setTimeout(() => {
+          element.remove();
+      }, 5000);
+    }
+
+    function remAlert(){
+      document.getElementsByClassName('alert')[0].remove();
     }
 
     function setActive()

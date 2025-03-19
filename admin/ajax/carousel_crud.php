@@ -1,6 +1,6 @@
 <?php 
-require '../inc/db_config.php';
-require '../inc/essentials.php';
+require ('../inc/db_config.php');
+require ('../inc/essentials.php');
 adminLogin();
 
 // Start output buffering to prevent any accidental output
