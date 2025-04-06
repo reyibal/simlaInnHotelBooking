@@ -47,23 +47,27 @@ if (isset($_POST['upd_general'])) {
     exit;
 }
 
-// Handle upd_shutdown request
-if (isset($_POST['upd_shutdown']) && isset($_POST['shutdown'])) {
+//Handle upd_shutdown request
+if (isset($_POST['upd_shutdown']) && isset($_POST['shutdown'])) 
+{
     $shutdown = intval($_POST['shutdown']);
     
     $query = "UPDATE settings SET shutdown = ? WHERE sr_no = ?";
     $values = [$shutdown, 1];
     $res = update($query, $values, 'ii');
     
-    if ($res) {
-        $response = ['success' => true];
-    } else {
-        $response = ['error' => 'Failed to update shutdown setting.'];
-    }
-
-    echo json_encode($response);
+    echo $res;
     exit;
 }
+// if(isset($_POST['upd_shutdown']))
+// {
+//     $frm_data = ($_POST['upd_shutdown']==0) ? 1 : 0;
+
+//     $q = "UPDATE settings SET shutdown = ? WHERE sr_no = ?";
+//     $values = [$frm_data,1];
+//     $res = update($q,$values,'ii');
+//     echo $res;
+// }
 
 // Handle get_contacts request
 if (isset($_POST['get_contacts'])) {

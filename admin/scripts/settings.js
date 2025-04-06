@@ -98,34 +98,54 @@ function resetForm() {
     site_about_inp.value = general_data.site_about;
 }
 
-function upd_shutdown(val) {
+function upd_shutdown(val) 
+{
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function() {
-        console.log("Response:", this.responseText);
+        // console.log("Response:", this.responseText);
 
-        try {
-            let response_data = JSON.parse(this.responseText);
-
-            if (response_data.error) {
-                console.error("Error:", response_data.error);
-            } else {
-                general_data.shutdown = val;
-            }
-
-        } catch (e) {
-            console.error("Failed to parse JSON:", e);
+        if(this.responseText == 1 && general_data.shutdown == 0) 
+        {
+            alert('success','Website shutdown state updated!');
         }
+        else
+        {
+            alert('success','Shutdown mode off!');
+        }
+        get_general();
     }
 
-    xhr.onerror = function() {
-        console.error("Request failed");
-    };
-
-    xhr.send('upd_shutdown=true&shutdown=' + val);
+    xhr.send('upd_shutdown='+val);
 }
+
+window.onload = function(){
+    get
+}
+
+//         try {
+//             let response_data = JSON.parse(this.responseText);
+
+//             if (response_data.error) {
+//                 console.error("Error:", response_data.error);
+//             } else {
+//                 general_data.shutdown = val;
+//                 alert('success', 'Website shutdown state updated!');
+//             }
+
+//         } catch (e) {
+//             console.error("Failed to parse JSON:", e);
+//         }
+//     }
+
+//     xhr.onerror = function() {
+//         console.error("Request failed");
+//     };
+
+//     xhr.send('upd_shutdown=true&shutdown=' + val);
+// }
 
 function get_contacts() {
     let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'twitter', 'facebook', 'instagram'];

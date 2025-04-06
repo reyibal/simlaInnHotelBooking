@@ -7,6 +7,7 @@
     define('CAROUSEL_IMG_PATH',SITE_URL.'images/carousel/');
     define('FACILITIES_IMG_PATH',SITE_URL.'images/facilities/');
     define('ROOMS_IMG_PATH',SITE_URL.'images/rooms/');
+    define('USERS_IMG_PATH',SITE_URL.'images/users/');
 
     //backend upload process needs this data
 
