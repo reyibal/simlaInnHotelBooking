@@ -159,7 +159,7 @@
     xhr.open("POST", "ajax/login_register.php", true);
 
     xhr.onload = function (){
-      console.log(this.responseText);
+      // console.log(this.responseText);
       if(this.responseText == 'inv_email_mob'){
         alert('error',"Invalid Email or Mobile Number");
       }
@@ -173,8 +173,14 @@
         alert('error',"Incorrect Password. Try again");
       }
       else{
-        console.log(this.responseText);
-        window.location = window.location.pathname;
+        // console.log(this.responseText);
+        let fileurl = window.location.href.split('/').pop().split('?').shift();
+        if(fileurl == 'room_details.php'){
+          window.location = window.location.href;
+        }
+        else{
+          window.location = window.location.pathname;
+        }
       }
     }
 
@@ -222,6 +228,14 @@
 
     xhr.send(data);
   });
-
+  
+  function checkLoginToBook(status,room_id){
+    if(status){
+      window.location.href = 'confirm_booking.php?id='+room_id;
+    }
+    else{
+      alert('error', 'Please login to book room!');
+    }
+  }
  setActive(); 
 </script>
