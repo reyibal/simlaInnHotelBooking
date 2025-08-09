@@ -80,7 +80,7 @@
                         </p>
                     </div>
                 </div>
-
+                <br>
                 <!--Contact Details Settings Section-->
 
                 <div class="card border-0 shadow-sm mb-4">

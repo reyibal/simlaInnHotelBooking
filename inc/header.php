@@ -30,7 +30,7 @@
             echo<<<data
               <div class="btn-group">
                 <button type="button" class="btn btn-dark shadown-none dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="me-1">
+                  <img src="$path$_SESSION[uPic]" style="width: 25px; height: 25px;" class="me-1 rounded-circle">
                   $_SESSION[uName]
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
@@ -109,39 +109,39 @@
           </span>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-6 ps-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Name</label>
                 <input name ="name" type="text" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-6 p-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Email</label>
                 <input name="email" type="email" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-6 ps-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Phone Number</label>
                 <input name="phonenum" type="number" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-6 p-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Picture</label>
                 <input name="profile" type="file" accept=".jpg, .jpeg, .png, .webp" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-12 p-0 mb-3">
+              <div class="col-md-12 mb-3">
                 <label class="form-label">Address</label>
                 <textarea name="address" class="form-control shadow-none" rows="1" required></textarea>
               </div>
-              <div class="col-md-6 ps-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Pin Code</label>
                 <input name="pincode" type="number" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-6 p-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Date of Birth</label>
                 <input name="dob" type="date" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-6 ps-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Password</label>
                 <input name="pass" type="password" class="form-control shadow-none" required>
               </div>
-              <div class="col-md-6 p-0 mb-3">
+              <div class="col-md-6 mb-3">
                 <label class="form-label">Confirm Password</label>
                 <input name="cpass" type="password" class="form-control shadow-none" required>
               </div>

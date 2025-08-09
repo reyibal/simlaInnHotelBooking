@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require('inc/links.php') ?>
     <title><?php echo $settings_r['site_title'] ?> - CONFIRM BOOKING</title>
-    <script src="script.js"></script>
+    <script src="payhere_config/script.js"></script>
   </head>
 <body class="bg-light">
   <?php require('inc/header.php') ?>
@@ -13,7 +13,7 @@
   <?php
 
     /* 
-    Check if room id is presentin URL
+    Check if room id is present in URL
     If Shutdown mode is active
     If user is logged in
 
@@ -57,9 +57,9 @@
           <h2 class="fw-bold">CONFIRM BOOKING</h2>
           <div style="font-size: 14px;">
             <a href="index.php" class="text-secondary text-decoraiton-none">HOME</a>
-            <span class="text-secondary"></span>
+            <span class="text-secondary">></span>
             <a href="rooms.php" class="text-secondary text-decoraiton-none">ROOMS</a>
-            <span class="text-secondary"></span>
+            <span class="text-secondary">></span>
             <a href="#" class="text-secondary text-decoraiton-none">CONFIRM</a>
 
           </div>
@@ -170,13 +170,13 @@
               pay_info.innerText = "Check-out date is earlier than check-in date";
             }
             else if(data.status == 'check_in_earlier'){
-              pay_info.innerText = "Check-out date is earlier than todays's date";
+              pay_info.innerText = "Check-in date is earlier than todays's date";
             }
             else if(data.status == 'unavailable'){
               pay_info.innerText = "Room not available for the selected dates";
             }
             else{
-              pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount to Pay: "+data.payment;
+              pay_info.innerHTML = "No. of Days: "+data.days+"<br>Total Amount to Pay: Rs."+data.payment;
               pay_info.classList.replace('text-danger','text-dark');
               booking_form.elements['pay_now'].removeAttribute('disabled');
             }

@@ -69,7 +69,7 @@ $response = [];
             echo 0;
         }
     }
-// If none of the above conditions are met, return an error
-$response = ["error" => "Invalid request."];
-echo json_encode($response);
+// // If none of the above conditions are met, return an error
+// $response = ["error" => "Invalid request."];
+// echo json_encode($response);
 exit;

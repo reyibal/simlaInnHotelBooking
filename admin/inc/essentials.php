@@ -17,7 +17,9 @@
     define('FACILITIES_FOLDER','/facilities/');
     define('ROOMS_FOLDER','/rooms/');
     define('USERS_FOLDER','/users/');
-
+    
+    // possible "booking status" values in db = pending, booked, cancelled, payment failed
+// to configure payhere payment gateway 'project folder' / payhere_config / config_payhere.php
     function adminLogin(){
         session_start();
         if(!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin']==true)){

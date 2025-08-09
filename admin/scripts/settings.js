@@ -125,28 +125,6 @@ window.onload = function(){
     get
 }
 
-//         try {
-//             let response_data = JSON.parse(this.responseText);
-
-//             if (response_data.error) {
-//                 console.error("Error:", response_data.error);
-//             } else {
-//                 general_data.shutdown = val;
-//                 alert('success', 'Website shutdown state updated!');
-//             }
-
-//         } catch (e) {
-//             console.error("Failed to parse JSON:", e);
-//         }
-//     }
-
-//     xhr.onerror = function() {
-//         console.error("Request failed");
-//     };
-
-//     xhr.send('upd_shutdown=true&shutdown=' + val);
-// }
-
 function get_contacts() {
     let contacts_p_id = ['address', 'gmap', 'pn1', 'pn2', 'email', 'twitter', 'facebook', 'instagram'];
     let iframe = document.getElementById('iframe');
